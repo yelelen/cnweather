@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <litepal>
+        <dbname value="cn_weather" />
+        <version value="1" />
+        <list>
+            <mapping class="com.yll.cnweather.db.City"/>
+            <mapping class="com.yll.cnweather.db.Province"/>
+            <mapping class="com.yll.cnweather.db.County"/>
+        </list>
+    </litepal>
