@@ -1,5 +1,6 @@
 package com.yll.cnweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yll.cnweather.gson.Forecast;
 import com.yll.cnweather.gson.Weather;
+import com.yll.cnweather.service.AutoUpdateService;
 import com.yll.cnweather.util.HttpUtil;
 import com.yll.cnweather.util.Utility;
 
@@ -216,5 +218,12 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText("洗车指数：" + weather.suggestion.carWash.info);
         sportText.setText("运动建议：" + weather.suggestion.sport.info);
         weatherLayout.setVisibility(View.VISIBLE);
+
+        if (weather != null && "ok".equals(weather.status)){
+            Intent intent = new Intent(this, AutoUpdateService.class);
+            startService(intent);
+        } else {
+            Toast.makeText(this, "启动更新天气服务失败", Toast.LENGTH_SHORT).show();
+        }
     }
 }
